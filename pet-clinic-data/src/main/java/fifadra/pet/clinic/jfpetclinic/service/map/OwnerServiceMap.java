@@ -3,9 +3,10 @@ package fifadra.pet.clinic.jfpetclinic.service.map;
 import fifadra.pet.clinic.jfpetclinic.model.Owner;
 import fifadra.pet.clinic.jfpetclinic.service.CrudService;
 import fifadra.pet.clinic.jfpetclinic.service.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements OwnerService {
     @Override
     public Set<Owner> findAll() {

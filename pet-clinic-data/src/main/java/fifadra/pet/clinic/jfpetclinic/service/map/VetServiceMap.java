@@ -4,9 +4,10 @@ import fifadra.pet.clinic.jfpetclinic.model.Vet;
 import fifadra.pet.clinic.jfpetclinic.service.CrudService;
 import fifadra.pet.clinic.jfpetclinic.service.VetService;
 import fifadra.pet.clinic.jfpetclinic.service.map.AbstractMapService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class VetServiceMap extends AbstractMapService<Vet,Long> implements VetService {
     @Override
     public Set<Vet> findAll() {

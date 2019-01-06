@@ -3,8 +3,10 @@ package fifadra.pet.clinic.jfpetclinic.service.map;
 import fifadra.pet.clinic.jfpetclinic.model.Pet;
 import fifadra.pet.clinic.jfpetclinic.service.CrudService;
 import fifadra.pet.clinic.jfpetclinic.service.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
+@Service
 public class PetServiceMap extends AbstractMapService<Pet,Long> implements PetService {
     @Override
     public Set<Pet> findAll() {

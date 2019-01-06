@@ -6,6 +6,7 @@ import fifadra.pet.clinic.jfpetclinic.service.OwnerService;
 import fifadra.pet.clinic.jfpetclinic.service.VetService;
 import fifadra.pet.clinic.jfpetclinic.service.map.OwnerServiceMap;
 import fifadra.pet.clinic.jfpetclinic.service.map.VetServiceMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.boot.CommandLineRunner;
@@ -16,9 +17,10 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        ownerService = new OwnerServiceMap();
-        vetService = new VetServiceMap();
+    @Autowired
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
