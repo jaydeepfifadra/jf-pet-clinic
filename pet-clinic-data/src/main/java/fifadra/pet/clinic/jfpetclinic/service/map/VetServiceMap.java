@@ -2,11 +2,12 @@ package fifadra.pet.clinic.jfpetclinic.service.map;
 
 import fifadra.pet.clinic.jfpetclinic.model.Vet;
 import fifadra.pet.clinic.jfpetclinic.service.CrudService;
+import fifadra.pet.clinic.jfpetclinic.service.VetService;
 import fifadra.pet.clinic.jfpetclinic.service.map.AbstractMapService;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet,Long> implements CrudService<Vet,Long> {
+public class VetServiceMap extends AbstractMapService<Vet,Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
