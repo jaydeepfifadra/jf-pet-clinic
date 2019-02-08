@@ -17,7 +17,7 @@ public class VetController {
         this.vetService = vetService;
     }
 
-    @RequestMapping({"/vets","/vets/index","vets/index.html"})
+    @RequestMapping({"/vets.html","/vets","/vets/index","vets/index.html"})
     public String listVets(Model model){
         System.out.println("Loading vets " + vetService.findAll().size());
         model.addAttribute("vets",vetService.findAll());
