@@ -2,9 +2,10 @@ package fifadra.pet.clinic.jfpetclinic.service.map;
 
 import fifadra.pet.clinic.jfpetclinic.model.PetType;
 import fifadra.pet.clinic.jfpetclinic.service.PetTypeService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class PetTypeServiceMap extends AbstractMapService<PetType,Long> implements PetTypeService {
     @Override
     public Set<PetType> findAll() {

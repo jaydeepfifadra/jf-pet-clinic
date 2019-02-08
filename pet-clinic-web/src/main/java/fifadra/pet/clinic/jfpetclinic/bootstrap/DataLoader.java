@@ -1,11 +1,11 @@
 package fifadra.pet.clinic.jfpetclinic.bootstrap;
 
 import fifadra.pet.clinic.jfpetclinic.model.Owner;
+import fifadra.pet.clinic.jfpetclinic.model.PetType;
 import fifadra.pet.clinic.jfpetclinic.model.Vet;
 import fifadra.pet.clinic.jfpetclinic.service.OwnerService;
+import fifadra.pet.clinic.jfpetclinic.service.PetTypeService;
 import fifadra.pet.clinic.jfpetclinic.service.VetService;
-import fifadra.pet.clinic.jfpetclinic.service.map.OwnerServiceMap;
-import fifadra.pet.clinic.jfpetclinic.service.map.VetServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -16,15 +16,26 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+
+        PetType dog = new PetType();
+        dog.setName("Dog");
+        PetType savedDogPetType = petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        cat.setName("Cat");
+        PetType savedCatPetType = petTypeService.save(cat);
+
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Bansri");
