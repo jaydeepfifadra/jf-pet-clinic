@@ -1,6 +1,7 @@
 package fifadra.pet.clinic.jfpetclinic.bootstrap;
 
 import fifadra.pet.clinic.jfpetclinic.model.Owner;
+import fifadra.pet.clinic.jfpetclinic.model.Pet;
 import fifadra.pet.clinic.jfpetclinic.model.PetType;
 import fifadra.pet.clinic.jfpetclinic.model.Vet;
 import fifadra.pet.clinic.jfpetclinic.service.OwnerService;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.boot.CommandLineRunner;
+
+import java.time.LocalDate;
 
 @Controller
 public class DataLoader implements CommandLineRunner {
@@ -40,12 +43,32 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Bansri");
         owner1.setLastName("Fifadra");
+        owner1.setAddress("Ghogha Circle");
+        owner1.setCity("Bhavnagar");
+        owner1.setTelephone("9426599499");
 
+        Pet bansisCat = new Pet();
+        bansisCat.setPetType(savedCatPetType);
+        bansisCat.setBirthDate(LocalDate.now());
+        bansisCat.setOwner(owner1);
+        bansisCat.setName("Sweety");
+        owner1.getPets().add(bansisCat);
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Jaydeep");
         owner2.setLastName("Fifadra");
+        owner2.setAddress("Makarba Road");
+        owner2.setCity("Ahmedabad");
+        owner2.setTelephone("9428257666");
+
+        Pet jaydeepsDog = new Pet();
+        jaydeepsDog.setPetType(savedDogPetType);
+        jaydeepsDog.setBirthDate(LocalDate.now());
+        jaydeepsDog.setOwner(owner2);
+        jaydeepsDog.setName("Bhanu");
+
+        owner2.getPets().add(jaydeepsDog);
 
         ownerService.save(owner2);
 
