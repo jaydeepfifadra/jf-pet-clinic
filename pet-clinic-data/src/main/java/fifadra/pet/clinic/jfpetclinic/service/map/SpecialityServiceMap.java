@@ -2,10 +2,12 @@ package fifadra.pet.clinic.jfpetclinic.service.map;
 
 import fifadra.pet.clinic.jfpetclinic.model.Speciality;
 import fifadra.pet.clinic.jfpetclinic.service.SpecialityService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 @Service
+@Profile({"default","map"})
 public class SpecialityServiceMap extends AbstractMapService<Speciality,Long> implements SpecialityService {
     @Override
     public Set<Speciality> findAll() {
