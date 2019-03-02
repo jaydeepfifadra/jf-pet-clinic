@@ -1,10 +1,7 @@
 package fifadra.pet.clinic.jfpetclinic.bootstrap;
 
 import fifadra.pet.clinic.jfpetclinic.model.*;
-import fifadra.pet.clinic.jfpetclinic.service.OwnerService;
-import fifadra.pet.clinic.jfpetclinic.service.PetTypeService;
-import fifadra.pet.clinic.jfpetclinic.service.SpecialityService;
-import fifadra.pet.clinic.jfpetclinic.service.VetService;
+import fifadra.pet.clinic.jfpetclinic.service.*;
 import fifadra.pet.clinic.jfpetclinic.service.map.SpecialityServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +17,14 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
-
+    private final VisitService visitService;
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -74,6 +72,12 @@ public class DataLoader implements CommandLineRunner {
         bansisCat.setName("Sweety");
         owner1.getPets().add(bansisCat);
         ownerService.save(owner1);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(bansisCat);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDesciprtion("Sneezy Cat");
+        visitService.save(catVisit);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Jaydeep");
