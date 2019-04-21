@@ -2,7 +2,9 @@ package fifadra.pet.clinic.jfpetclinic.controllers;
 
 import fifadra.pet.clinic.jfpetclinic.model.Owner;
 import fifadra.pet.clinic.jfpetclinic.service.OwnerService;
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
+import org.hamcrest.beans.HasProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +20,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.isNotNull;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -72,4 +76,17 @@ class OwnerControllerTest {
 
         verifyZeroInteractions(ownerService);
     }
-}
+
+    @Test
+    void showOwner()  throws Exception {
+        Owner owner = new Owner();
+        owner.setId(1L);
+
+        when(ownerService.findById(anyLong())).thenReturn(owner);
+
+        mockMvc.perform(get("/owners/1"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownerDetails"))
+                .andExpect(model().attribute("owner",Matchers.hasProperty("id",Matchers.is(1L ))));
+    }
+    }
